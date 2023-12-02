@@ -31,6 +31,5 @@ private:
 	std::string leftOperand(unsigned int index, std::string operation);
 	std::string rightOperand(unsigned int index, std::string operation);
 
-	Dnum evaluateFormula(Dnum x, Dnum y, std::string formula);
-	
+	Dnum evaluateFormula(Dnum x, Dnum y, std::string formula);	
 };

@@ -16,21 +16,16 @@
 class Scene {
 
 private:
-	std::vector<Object*> objects;
-	Sun* sun;
-
 	glm::vec3 center;
 
+	std::vector<Object*> objects;
+	Sun* sun;
 	Camera* camera;
 
-	GpuProgram* gridShader;
-	GpuProgram* functionShader;
 	GpuProgram* sunShader;
 	TesselationProgram* patchShader;
 
-	unsigned int objectIndex = 0;
-	unsigned int shaderIndex = 0;
-
+	unsigned int object_index = 0;
 	unsigned int minimal_tesselation;
 	unsigned int maximal_tesselation;
 	float minimal_distance;
@@ -41,11 +36,9 @@ private:
 
 public:
 	Scene();
+	inline void setObjectIndex(unsigned int value) { object_index = value; }
 
-	inline void setObjectIndex(unsigned int value) { objectIndex = value; }
-	inline void setShaderIndex(unsigned int value) { shaderIndex = value; }
-	inline void setFunctionMaterial(const Material _material) { /*function->setMaterial(_material);*/ }
-
+	void setObjectMaterial(unsigned int index, const Material material);
 	void setPrimitiveType(unsigned int type);
 	void setTesselationParameters(unsigned int min_tess, unsigned int max_tess, float min_dist, float max_dist);
 	void reevaluateFunction(const char* positionString, const char* normalString);

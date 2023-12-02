@@ -6,9 +6,9 @@ void Gui::drawRectangle(glm::vec3 color) {
 }
 
 void Gui::drawMaterialPicker(Scene& scene, unsigned int x, unsigned int y) {
-    static float ambient[3] = {0.0f, 0.0f, 0.5f};
-    static float diffuse[3] = {0.4f, 0.4f, 0.4f};
-    static float specular[3] = {0.2f, 0.2f, 0.2f};
+    static float ambient[3] = {0.0f, 0.2f, 0.0f};
+    static float diffuse[3] = {1.0f, 1.0f, 0.0f};
+    static float specular[3] = {1.0f, 0.0f, 0.0f};
     static float shininess = 1.0f;
 
     ImGui::SetNextWindowSize(ImVec2(300, 130));
@@ -27,14 +27,14 @@ void Gui::drawMaterialPicker(Scene& scene, unsigned int x, unsigned int y) {
         shininess
     };
 
-    scene.setFunctionMaterial(material);
+    scene.setObjectMaterial(0, material);
 }
 
 void Gui::drawTesselationPicker(Scene& scene, unsigned int x, unsigned int y) {
-    static float min_tess = 1;
-    static float max_tess = 20;
-    static float min_dist = 0;
-    static float max_dist = 2;
+    static float min_tess = 1.0f;
+    static float max_tess = 32.0f;
+    static float min_dist = 0.0f;
+    static float max_dist = 3.5f;
 
     ImGui::SetNextWindowSize(ImVec2(300, 130));
     ImGui::SetNextWindowPos(ImVec2(x, y), ImGuiCond_Always);
@@ -49,7 +49,7 @@ void Gui::drawTesselationPicker(Scene& scene, unsigned int x, unsigned int y) {
 }
 
 void Gui::drawObjectPicker(Scene& scene, unsigned int x, unsigned int y) {
-    const char* items[] = { "lightsource", "function", "grid", "everything" };
+    const char* items[] = {"surface",  "lightsource" };
     static int currentItem;
 
     ImGui::SetNextWindowSize(ImVec2(300, 120));
@@ -105,8 +105,9 @@ void Gui::drawUserInteface(Scene& scene, int sceneWidth, int windowWidth, int wi
     unsigned int pos_x = 850;
     unsigned int pos_y = 50;
     drawObjectPicker(scene, pos_x, pos_y);
-    drawFunctionPicker(scene, pos_x, pos_y += 150);
+    drawPrimitivePicker(scene, pos_x, pos_y += 150);
+    //drawFunctionPicker(scene, pos_x, pos_y += 150);
     drawMaterialPicker(scene, pos_x, pos_y += 150);
     drawTesselationPicker(scene, pos_x, pos_y += 150);
-    drawPrimitivePicker(scene, pos_x, pos_y += 150);
+   
 }

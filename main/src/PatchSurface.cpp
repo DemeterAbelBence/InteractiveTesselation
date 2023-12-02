@@ -6,9 +6,9 @@ PatchSurface::PatchSurface(unsigned int _rezolution) {
 }
 
 glm::vec3 PatchSurface::generateVertexData(float x, float y) {
-	float z = 0;
+	float z = 0.0f;
     glm::vec3 position = glm::vec3(x, z, y);
-	position = center + position;
+	position = position  + center;
 
     return position;
 }
